@@ -94,14 +94,16 @@ def get_logger(log_name, file_name):
     logger.setLevel(logging.INFO)
 
     console_handler = logging.StreamHandler()
+    file_name = os.path.join(file_name, f'{log_name}_train.log')
+    os.makedirs(os.path.dirname(file_name), exist_ok=True)
     file_handler = logging.FileHandler(filename=file_name, mode='w')
 
     standard_formatter = logging.Formatter(
-        '%(asctime)s %(name)s [%(pathname)s line:(lineno)d] %(levelname)s %(message)s]')
+        '%(asctime)s %(name)s [%(filename)s line:%(lineno)d] %(levelname)s %(message)s]')
     simple_formatter = logging.Formatter('%(levelname)s %(message)s]')
 
-    console_handler.setFormatter(standard_formatter)
-    file_handler.setFormatter(simple_formatter)
+    console_handler.setFormatter(simple_formatter)
+    file_handler.setFormatter(standard_formatter)
     logger.addHandler(console_handler)
     logger.addHandler(file_handler)
 

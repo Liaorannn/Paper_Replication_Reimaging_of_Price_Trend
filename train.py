@@ -87,12 +87,14 @@ def train_main(settings):
                                         settings['DATA']['IMAGE_WIDTH'],
                                         settings['DATA']['COLUMNS'])
     if settings['TRAIN']['OUT_FEATURES'] == 2:
-        binary_ind = label_train[label_train['Ret_20d_label'] != 2].index
+        binary_ind = label_train[label_train['label'] != 2].index
         image_train = image_train[binary_ind]
-        label_train = label_train.loc[binary_ind, :]
+        label_train = label_train.loc[binary_ind, :].reset_index(drop=True)
 
     logger.info('====================== Model Train ========================')
     config = settings['TRAIN']
+    config['DEVICE'] = device
+
     kfold = StratifiedKFold(n_splits=config['KFOLD'])
     for k, (train_idx, valid_idx) in enumerate(kfold.split(image_train, label_train['label'])):
         train_loader, valid_loader = get_train_valid_loader(image_train, label_train, train_idx, valid_idx, config)
@@ -118,16 +120,20 @@ def train_main(settings):
             train_loss, train_acc, train_f1 = train_one_epoch(epoch, model, train_loader, criterion, optimizer,
                                                               scheduler, config, logger)
             valid_loss, valid_acc, valid_f1 = valid_one_epoch(epoch, model, valid_loader, criterion, config, logger)
-            df_performance.loc[
-                len(df_performance), ['epoch', 'train_loss', 'train_acc', 'train_f1']] = epoch, train_loss, train_acc, train_f1
-            df_performance.loc[
-                len(df_performance), ['valid_loss', 'valid_acc', 'valid_f1']] = valid_loss, valid_acc, valid_f1
+            df_performance.loc[len(df_performance),
+                               ['epoch',
+                                'train_loss', 'train_acc', 'train_f1',
+                                'valid_loss', 'valid_acc', 'valid_f1']] = (epoch,
+                                                                           train_loss, train_acc, train_f1,
+                                                                           valid_loss, valid_acc, valid_f1)
+            model_save_path = os.path.join(fold_save_path, f'model_fold_{k}_{epoch}_{round(valid_acc, 3)}.pth')
+            torch.save(model.state_dict(), model_save_path)
 
             if epoch > 2:
                 if (valid_loss > early_stopping[-1]) & (
                         early_stopping[-1] > early_stopping[-2]):  # Early stopping setting
-                    model_save_path = os.path.join(fold_save_path, f'model_fold_{k}_{epoch}_{round(valid_acc, 3)}.pth')
-                    torch.save(model.state_dict(), model_save_path)
+                    # model_save_path = os.path.join(fold_save_path, f'model_fold_{k}_{epoch}_{round(valid_acc, 3)}.pth')
+                    # torch.save(model.state_dict(), model_save_path)
 
                     logger.info(f'Fold {k} best model is epoch_{epoch} model!')
                     break

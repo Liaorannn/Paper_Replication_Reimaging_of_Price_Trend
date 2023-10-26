@@ -14,7 +14,7 @@ class TrainValidSet(Dataset):
         self.X = torch.Tensor(X[idx])
         if len(self.X.shape) == 3:
             self.X = self.X.unsqueeze(dim=1)
-        self.y = torch.Tensor(y.loc[idx, 'Ret_20d_label'].copy().values)
+        self.y = torch.Tensor(y.loc[idx, 'label'].copy().values)
         if self.y.dtype == torch.float32:
             self.y = self.y.long()
 
@@ -28,7 +28,7 @@ class TrainValidSet(Dataset):
 class TestSet(Dataset):
     def __init__(self, X, y):
         self.X = torch.Tensor(X[id])
-        self.y = torch.Tensor(y['Ret_20d_label'].copy().values)
+        self.y = torch.Tensor(y['label'].copy().values)
         if len(self.X.shape) == 3:
             self.X = self.X.unsqueeze(dim=1)
         if self.y.dtype == torch.float32:
