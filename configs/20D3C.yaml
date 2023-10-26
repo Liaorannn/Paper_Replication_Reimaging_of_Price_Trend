@@ -1,0 +1,40 @@
+DATA:
+  COLUMNS:
+  - Date
+  - StockID
+  - Ret_20d
+  - Ret_20d_label
+  IMAGE_HEIGHT:
+    5: 32
+    20: 64
+    60: 96
+  IMAGE_WIDTH:
+    5: 15
+    20: 60
+    60: 180
+  IMG_FILE: /kaggle/input/dataset-of-reimaging-price-trend
+  TRAIN_YEAR:
+  - 1993
+  - 1994
+  - 1995
+  - 1996
+  - 1997
+  - 1998
+  - 1999
+  - 2000
+  - 2001
+INFERENCE:
+  BACK_TEST_YEAR: null
+  TEST_YEAR: null
+PARAMS:
+  BATCH_SIZE: 128
+  EPOCHS: 13
+  KFOLD: 3
+  LR: 1.0e-05
+  Model_Name: CNN20D3F
+  NUM_WORKERS: 0
+  OUT_FEATURES: 3
+  WEIGHT_DECAY: 0.001
+PATH:
+  MODEL_PATH: null
+  RESULT_PATH: null
