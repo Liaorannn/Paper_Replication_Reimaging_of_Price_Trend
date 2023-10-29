@@ -15,11 +15,11 @@ upload my train-test dataset on kaggle platform([data source](https://www.kaggle
 ## Quick Start
 Train Mode:
 ```Batch
-!python main.py "xxx.yml" -t
+!python main.py -s "xxx.yml" -t
 ```
 Inference Mode:
 ```Batch
-!python main.py "xxx.yml" -i
+!python main.py -s "xxx.yml" -i
 ```
 As for the back test result, you shoul check the *test.tpynb* and *backtesting.py* file.
 You can also use the kaggle as training and predicting platform, my project files are also public in kaggle([project file](https://www.kaggle.com/datasets/aliawran/project-file10)), which
