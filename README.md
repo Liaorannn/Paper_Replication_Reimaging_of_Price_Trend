@@ -1,4 +1,4 @@
-**Paper_Replication_Reimaging_of_Price_Trend**
+# Paper_Replication_Reimaging_of_Price_Trend
 ***
 HKUST MAFM course project
 This project is one of my class assignments completed at HKUST M.Sc. in Financial Mathematics (MAFM) program. This is a PyTorch implementation of 
