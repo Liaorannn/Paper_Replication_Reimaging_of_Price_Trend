@@ -2,7 +2,7 @@
 ***
 This project is one of my class assignments completed at HKUST M.Sc. in Financial Mathematics (MAFM) program. This is a PyTorch implementation of 
 [**(Re-)Imag(in)ing Price Trends**](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3756587).
- Please check the [pdf report](.\MAFS_6010Z_Project1_[Aoran Li, Tianying Zhou, Langting Weng, Yijia Ma]_report.pdf) for a detailed description.
+ Please check the **pdf report** for a detailed description.
 
 ## Config Setting
 ```Batch
