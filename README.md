@@ -24,3 +24,9 @@ Inference Mode:
 As for the back test result, you shoul check the *test.tpynb* and *backtesting.py* file.
 You can also use the kaggle as training and predicting platform, my project files are also public in kaggle([project file](https://www.kaggle.com/datasets/aliawran/project-file10)), which
  is basically same as this repo. Please feel free give this repo a star if you find it useful and please raise issue if you find sth confused.
+
+ ## Performance
+
+ ![20D2C](./backtest returns/backtest_CNN20D2C.png)
+
+ ![5D2C](./backtest returns/backtest_CNN5D2C.png)
