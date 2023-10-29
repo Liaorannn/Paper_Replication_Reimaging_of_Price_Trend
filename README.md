@@ -1,4 +1,5 @@
-# Paper_Replication_Reimaging_of_Price_Trend
+**Paper_Replication_Reimaging_of_Price_Trend**
+***
 HKUST MAFM course project
 This project is one of my class assignments completed at HKUST M.Sc. in Financial Mathematics (MAFM) program. This is a PyTorch implementation of 
 [**(Re-)Imag(in)ing Price Trends**](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3756587).
@@ -9,7 +10,7 @@ Check the pdf report for detailed description.
 ./config/xxx.yam;
 ```
 Since I basically use the Kaggle as training platform. So you may need to rewrite the img_path and model_path parameters. Or you can also use kaggle platform since I have
-upload my train-test dataset on kaggle platform([data source](https://www.kaggle.com/datasets/aliawran/dataset-of-reimaging-price-trend).
+upload my train-test dataset on kaggle platform([data source](https://www.kaggle.com/datasets/aliawran/dataset-of-reimaging-price-trend)).
 
 ## Quick Start
 Train Mode:
