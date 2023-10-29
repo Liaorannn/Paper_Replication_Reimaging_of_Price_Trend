@@ -1,9 +1,8 @@
 # Paper_Replication_Reimaging_of_Price_Trend
 ***
-HKUST MAFM course project
 This project is one of my class assignments completed at HKUST M.Sc. in Financial Mathematics (MAFM) program. This is a PyTorch implementation of 
 [**(Re-)Imag(in)ing Price Trends**](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3756587).
-Check the pdf report for detailed description.
+Check the pdf report for a detailed description.
 
 ## Config Setting
 ```Batch
