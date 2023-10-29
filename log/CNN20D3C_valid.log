@@ -1,0 +1,8 @@
+2023-10-27 13:46:52,288 CNN20D3C [inference.py line:84] INFO Using device: cuda.
+2023-10-27 13:48:23,211 CNN20D3C [inference.py line:33] INFO ========================= Model Inference =========================
+2023-10-27 13:48:23,225 CNN20D3C [inference.py line:39] INFO ------------------ model_fold_2_6_0.521.pth testing ----------------
+2023-10-27 14:17:37,035 CNN20D3C [inference.py line:62] INFO ------------- model_fold_2_6_0.521.pth: Loss: 0.728 | acc: 0.518 | f1: 0.426 --------------
+2023-10-27 14:17:37,036 CNN20D3C [inference.py line:39] INFO ------------------ model_fold_0_9_0.524.pth testing ----------------
+2023-10-27 14:46:46,651 CNN20D3C [inference.py line:62] INFO ------------- model_fold_0_9_0.524.pth: Loss: 0.728 | acc: 0.518 | f1: 0.428 --------------
+2023-10-27 14:46:46,651 CNN20D3C [inference.py line:39] INFO ------------------ model_fold_1_9_0.526.pth testing ----------------
+2023-10-27 15:15:55,593 CNN20D3C [inference.py line:62] INFO ------------- model_fold_1_9_0.526.pth: Loss: 0.728 | acc: 0.516 | f1: 0.426 --------------

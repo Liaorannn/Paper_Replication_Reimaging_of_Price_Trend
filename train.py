@@ -91,16 +91,20 @@ def train_main(settings):
         image_train = image_train[binary_ind]
         label_train = label_train.loc[binary_ind, :].reset_index(drop=True)
 
-    logger.info('====================== Model Train ========================')
+    logger.info(f'====================== {settings["TRAIN"]["MODEL_NAME"]} Train ========================')
     config = settings['TRAIN']
     config['DEVICE'] = device
 
     kfold = StratifiedKFold(n_splits=config['KFOLD'])
     for k, (train_idx, valid_idx) in enumerate(kfold.split(image_train, label_train['label'])):
+        if k in [0, 1]:
+            logger.info(f'skip fold {k} !')
+            continue
+
         train_loader, valid_loader = get_train_valid_loader(image_train, label_train, train_idx, valid_idx, config)
         logger.info(f'--------------------- fold_{k} training --------------------------')
 
-        if config['MODEL_NAME'] in ['CNN20D2C', 'CNN20D3C']:
+        if config['MODEL_NAME'].__contains__('CNN'):
             model = CNN20DModel(config['OUT_FEATURES'])
 
         model.to(config['DEVICE'])
@@ -126,17 +130,22 @@ def train_main(settings):
                                 'valid_loss', 'valid_acc', 'valid_f1']] = (epoch,
                                                                            train_loss, train_acc, train_f1,
                                                                            valid_loss, valid_acc, valid_f1)
-            model_save_path = os.path.join(fold_save_path, f'model_fold_{k}_{epoch}_{round(valid_acc, 3)}.pth')
-            torch.save(model.state_dict(), model_save_path)
+            # model_save_path = os.path.join(fold_save_path, f'model_fold_{k}_{epoch}_{round(valid_acc, 3)}.pth')
+            # torch.save(model.state_dict(), model_save_path)
 
             if epoch > 2:
                 if (valid_loss > early_stopping[-1]) & (
                         early_stopping[-1] > early_stopping[-2]):  # Early stopping setting
-                    # model_save_path = os.path.join(fold_save_path, f'model_fold_{k}_{epoch}_{round(valid_acc, 3)}.pth')
-                    # torch.save(model.state_dict(), model_save_path)
+                    model_save_path = os.path.join(fold_save_path, f'model_fold_{k}_{epoch}_{round(valid_acc, 3)}.pth')
+                    torch.save(model.state_dict(), model_save_path)
 
-                    logger.info(f'Fold {k} best model is epoch_{epoch} model!')
+                    logger.info(f'Early Stop: Fold {k} best model is epoch_{epoch} model!')
                     break
+                elif epoch == config['EPOCHS'] - 1:
+                    model_save_path = os.path.join(fold_save_path, f'model_fold_{k}_{epoch}_{round(valid_acc, 3)}.pth')
+                    torch.save(model.state_dict(), model_save_path)
+                    logger.info(f'Epochs End: Fold {k} best model is epoch_{epoch} model!')
+
             early_stopping.append(valid_loss)
 
         df_performance.to_csv(os.path.join(fold_save_path, f'train_fold_{k}.csv'))
