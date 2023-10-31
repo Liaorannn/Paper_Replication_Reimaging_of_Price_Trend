@@ -26,6 +26,7 @@ You can also use the kaggle as training and predicting platform, my project file
 
  ## Performance
 
- ![20D2C](./backtest_returns/backtest_CNN20D2C.png)
+ ![20D2C](./backtest_return/backtest_CNN20D2C.png)
 
- ![5D2C](./backtest_returns/backtest_CNN5D2C.png)
+
+ ![5D2C](backtest_return/backtest_CNN5D2C.png)
